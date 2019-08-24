@@ -1,3 +1,4 @@
+import 'package:crypto_tracker/components/custom_app_bar.dart';
 import 'package:crypto_tracker/util/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -10,10 +11,11 @@ class _CryptoScreenState extends State<CryptoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Crypto Tracker', style: kAppBarTextStyle,),
-        backgroundColor: Colors.white,
-        brightness: Brightness.light,
+      appBar: CustomAppBar(
+        title: Text(
+          'Crypto Tracker',
+          style: kAppBarTextStyle,
+        ),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
