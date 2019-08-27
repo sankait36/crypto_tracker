@@ -2,7 +2,7 @@ import 'package:crypto_tracker/components/custom_app_bar.dart';
 import 'package:crypto_tracker/components/custom_card.dart';
 import 'package:crypto_tracker/util/coins_list.dart';
 import 'package:crypto_tracker/util/constants.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter_cupertino_data_picker/flutter_cupertino_data_picker.dart';
 import 'package:flutter/material.dart';
 
 class CryptoScreen extends StatefulWidget {
@@ -22,6 +22,23 @@ class _CryptoScreenState extends State<CryptoScreen> {
     }).toList();
   }
 
+  void _showCupertinoDataPicker() {
+    final bool showTitleActions = true;
+    DataPicker.showDatePicker(
+      context,
+      showTitleActions: showTitleActions,
+      datas: currenciesList,
+      selectedIndex: this.selectedIndex,
+      locale: 'en_us',
+      title: 'Select Currency',
+      onConfirm: (data) {
+        setState(() {
+          this.currencySelection = data;
+        });
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,22 +52,7 @@ class _CryptoScreenState extends State<CryptoScreen> {
             icon: Icon(Icons.more_vert),
             color: Colors.black,
             onPressed: () {
-              showModalBottomSheet(
-                  context: context,
-                  builder: (BuildContext builder) {
-                    return CupertinoPicker(
-                      scrollController: FixedExtentScrollController(initialItem: selectedIndex),
-                      itemExtent: 32.0,
-                      diameterRatio: 1.0,
-                      onSelectedItemChanged: (selectedIndex) {
-                        setState(() {
-                          this.currencySelection = currenciesList.elementAt(selectedIndex);
-                          this.selectedIndex = selectedIndex;
-                        });
-                      },
-                      children: getCurrencyList(),
-                    );
-                  });
+              _showCupertinoDataPicker();
             },
           ),
         ],
