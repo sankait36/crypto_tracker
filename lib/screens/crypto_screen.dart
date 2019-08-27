@@ -2,6 +2,7 @@ import 'package:crypto_tracker/components/custom_app_bar.dart';
 import 'package:crypto_tracker/components/custom_card.dart';
 import 'package:crypto_tracker/util/coins_list.dart';
 import 'package:crypto_tracker/util/constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CryptoScreen extends StatefulWidget {
@@ -10,12 +11,15 @@ class CryptoScreen extends StatefulWidget {
 }
 
 class _CryptoScreenState extends State<CryptoScreen> {
-  String currencySelection;
+  String currencySelection = 'USD';
+  int selectedIndex = 0;
 
-  void onCurrencySelected(String currency) {
-    setState(() {
-      this.currencySelection = currency;
-    });
+  List<Widget> getCurrencyList() {
+    return currenciesList.map((String item) {
+      return Text(
+        item,
+      );
+    }).toList();
   }
 
   @override
@@ -27,25 +31,26 @@ class _CryptoScreenState extends State<CryptoScreen> {
           style: kAppBarTextStyle,
         ),
         actions: <Widget>[
-          PopupMenuButton<String>(
-            icon: Icon(
-              Icons.attach_money,
-              color: Colors.black,
-            ),
-            onSelected: (item) {
-              onCurrencySelected(item);
-              print(currencySelection);
-            },
-            itemBuilder: (BuildContext context) {
-              return currenciesList.map((String item) {
-                return PopupMenuItem<String>(
-                  value: item,
-                  child: Text(
-                    item,
-                    style: kPopupMenuItemTextStyle,
-                  ),
-                );
-              }).toList();
+          IconButton(
+            icon: Icon(Icons.more_vert),
+            color: Colors.black,
+            onPressed: () {
+              showModalBottomSheet(
+                  context: context,
+                  builder: (BuildContext builder) {
+                    return CupertinoPicker(
+                      scrollController: FixedExtentScrollController(initialItem: selectedIndex),
+                      itemExtent: 32.0,
+                      diameterRatio: 1.0,
+                      onSelectedItemChanged: (selectedIndex) {
+                        setState(() {
+                          this.currencySelection = currenciesList.elementAt(selectedIndex);
+                          this.selectedIndex = selectedIndex;
+                        });
+                      },
+                      children: getCurrencyList(),
+                    );
+                  });
             },
           ),
         ],
@@ -72,7 +77,7 @@ class _CryptoScreenState extends State<CryptoScreen> {
           Padding(
             padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
             child: CustomCard(
-              cardText: '1 BTC = ? USD',
+              cardText: '1 BTC = ? $currencySelection',
             ),
           ),
         ],
