@@ -1,5 +1,6 @@
 import 'package:crypto_tracker/components/custom_app_bar.dart';
 import 'package:crypto_tracker/components/custom_card.dart';
+import 'package:crypto_tracker/services/crypto_model.dart';
 import 'package:crypto_tracker/util/coins_list.dart';
 import 'package:crypto_tracker/util/constants.dart';
 import 'package:flutter_cupertino_data_picker/flutter_cupertino_data_picker.dart';
@@ -12,7 +13,17 @@ class CryptoScreen extends StatefulWidget {
 
 class _CryptoScreenState extends State<CryptoScreen> {
   String currencySelection = 'USD';
-  int selectedIndex = 0;
+
+  @override
+  initState() {
+    super.initState();
+    getCryptoData();
+  }
+
+  void getCryptoData() async {
+    var cryptoData = await CryptoModel().getCryptoData(cryptoList, currenciesList);
+    print(cryptoData);
+  }
 
   List<Widget> getCurrencyList() {
     return currenciesList.map((String item) {
@@ -28,7 +39,6 @@ class _CryptoScreenState extends State<CryptoScreen> {
       context,
       showTitleActions: showTitleActions,
       datas: currenciesList,
-      selectedIndex: this.selectedIndex,
       locale: 'en_us',
       title: 'Select Currency',
       onConfirm: (data) {
