@@ -82,6 +82,13 @@ class _CryptoScreenState extends State<CryptoScreen> {
         ),
         actions: <Widget>[
           IconButton(
+            icon: Icon(Icons.refresh),
+            color: Colors.black,
+            onPressed: () {
+              getCryptoData();
+            },
+          ),
+          IconButton(
             icon: Icon(Icons.more_vert),
             color: Colors.black,
             onPressed: () {
