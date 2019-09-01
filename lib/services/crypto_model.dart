@@ -23,7 +23,7 @@ class CryptoModel {
       result[item] = {};
     }
     for (String data in cryptoData.keys) {
-      result[data.substring(0, 3)][data.substring(3)] = cryptoData[data]['ask'];
+      result[data.substring(0, 3)][data.substring(3)] = cryptoData[data]['last'];
     }
     return result;
   }
