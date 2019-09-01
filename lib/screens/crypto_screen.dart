@@ -97,33 +97,35 @@ class _CryptoScreenState extends State<CryptoScreen> {
           ),
         ],
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Text(
-                  'Selected Currency:',
-                  style: kPopupMenuItemTextStyle,
-                ),
-                Text(
-                  currencySelection,
-                  style: kPopupMenuItemTextStyle,
-                )
-              ],
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Text(
+                    'Selected Currency:',
+                    style: kPopupMenuItemTextStyle,
+                  ),
+                  Text(
+                    currencySelection,
+                    style: kPopupMenuItemTextStyle,
+                  )
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: getCryptoCards(),
+            Padding(
+              padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: getCryptoCards(),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
