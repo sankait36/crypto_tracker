@@ -13,8 +13,8 @@ class CryptoModel {
     Networking networkHelper =
         Networking('$bitcoinAverageAPIBase?crypto=$cryptos&fiat=$fiats');
     var cryptoData = await networkHelper.getData();
-    getPricesForCryptoToken(cryptoList, cryptoData);
-    return cryptoData;
+    var priceData = getPricesForCryptoToken(cryptoList, cryptoData);
+    return priceData;
   }
 
   Object getPricesForCryptoToken(dynamic cryptoList, dynamic cryptoData) {
@@ -25,7 +25,6 @@ class CryptoModel {
     for (String data in cryptoData.keys) {
       result[data.substring(0, 3)][data.substring(3)] = cryptoData[data]['ask'];
     }
-    print(result);
     return result;
   }
 }

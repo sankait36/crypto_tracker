@@ -13,6 +13,7 @@ class CryptoScreen extends StatefulWidget {
 
 class _CryptoScreenState extends State<CryptoScreen> {
   String currencySelection = 'USD';
+  var cryptoData = {};
 
   @override
   initState() {
@@ -21,8 +22,30 @@ class _CryptoScreenState extends State<CryptoScreen> {
   }
 
   void getCryptoData() async {
-    var cryptoData = await CryptoModel().getCryptoData(cryptoList, currenciesList);
-    print(cryptoData);
+    var cryptoData =
+        await CryptoModel().getCryptoData(cryptoList, currenciesList);
+    setState(() {
+      this.cryptoData = cryptoData;
+    });
+  }
+
+  List<Padding> getCryptoCards() {
+    if (cryptoData.keys.isEmpty) {
+      return [];
+    }
+    List<Padding> cryptoCardsList = [];
+    for (String token in cryptoData.keys) {
+      var price = cryptoData[token][currencySelection].toStringAsFixed(2);
+      cryptoCardsList.add(
+        Padding(
+          padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+          child: CustomCard(
+            cardText: '1 $token = $price $currencySelection',
+          ),
+        ),
+      );
+    }
+    return cryptoCardsList;
   }
 
   List<Widget> getCurrencyList() {
@@ -88,8 +111,9 @@ class _CryptoScreenState extends State<CryptoScreen> {
           ),
           Padding(
             padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
-            child: CustomCard(
-              cardText: '1 BTC = ? $currencySelection',
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: getCryptoCards(),
             ),
           ),
         ],
