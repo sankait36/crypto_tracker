@@ -1,13 +1,25 @@
 import 'package:crypto_tracker/util/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomCard extends StatelessWidget {
   final String cardText;
+  final String cryptoToken;
 
-  const CustomCard({this.cardText});
-  
+  const CustomCard({this.cardText, this.cryptoToken});
+
   @override
   Widget build(BuildContext context) {
+    SvgPicture tokenImage = new SvgPicture.asset(
+      'images/$cryptoToken.svg',
+      width: 40.0,
+      height: 40.0,
+    );
+    Widget imageContainer = Container(
+      width: 50.0,
+      height: 50.0,
+      child: tokenImage,
+    );
     return Card(
       color: Colors.white,
       elevation: 10.0,
@@ -16,10 +28,18 @@ class CustomCard extends StatelessWidget {
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
-        child: Text(
-          cardText,
-          textAlign: TextAlign.center,
-          style: kCardTextStyle,
+        child: Row(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(right: 15.0),
+              child: imageContainer,
+            ),
+            Text(
+              cardText,
+              textAlign: TextAlign.center,
+              style: kCardTextStyle,
+            ),
+          ],
         ),
       ),
     );
