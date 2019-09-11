@@ -9,10 +9,15 @@ const List<String> currenciesList = [
   'JPY',
 ];
 
-const List<String> cryptoList = [
-  'BTC',
-  'ETH',
-  'LTC',
-];
+const Map<String, String> cryptoList = {
+  'BTC': 'Bitcoin',
+  'ETH': 'Ethereum',
+  'LTC': 'Litecoin',
+  'XMR': 'Monero',
+  'XRP': 'Ripple',
+  'ZEC': 'ZCash',
+};
+
+
 
 class CoinList {}

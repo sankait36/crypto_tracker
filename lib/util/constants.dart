@@ -10,7 +10,7 @@ const kCardTextStyle = TextStyle(
   color: Colors.black,
   fontFamily: 'Nunito',
   fontWeight: FontWeight.bold,
-  fontSize: 20.0,
+  fontSize: 18.0,
 );
 
 const kPopupMenuItemTextStyle = TextStyle(

@@ -23,7 +23,7 @@ class _CryptoScreenState extends State<CryptoScreen> {
 
   void getCryptoData() async {
     var cryptoData =
-        await CryptoModel().getCryptoData(cryptoList, currenciesList);
+        await CryptoModel().getCryptoData(cryptoList.keys.toList(), currenciesList);
     setState(() {
       this.cryptoData = cryptoData;
     });
@@ -118,13 +118,12 @@ class _CryptoScreenState extends State<CryptoScreen> {
                 ],
               ),
             ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+            Expanded(
+              child: ListView(
+                padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
                 children: getCryptoCards(),
               ),
-            ),
+            )
           ],
         ),
       ),
