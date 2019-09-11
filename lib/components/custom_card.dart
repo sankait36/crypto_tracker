@@ -5,8 +5,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 class CustomCard extends StatelessWidget {
   final String cardText;
   final String cryptoToken;
+  final String cryptoName;
 
-  const CustomCard({this.cardText, this.cryptoToken});
+  const CustomCard({this.cardText, this.cryptoToken, this.cryptoName});
 
   @override
   Widget build(BuildContext context) {
@@ -34,11 +35,19 @@ class CustomCard extends StatelessWidget {
               padding: const EdgeInsets.only(right: 15.0),
               child: imageContainer,
             ),
-            Text(
-              cardText,
-              textAlign: TextAlign.center,
-              style: kCardTextStyle,
-            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  cardText,
+                  style: kCardMainTextStyle,
+                ),
+                Text(
+                  this.cryptoName,
+                  style: kCardSubTextStyle,
+                ),
+              ],
+            )
           ],
         ),
       ),

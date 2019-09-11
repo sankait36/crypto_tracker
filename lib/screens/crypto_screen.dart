@@ -42,6 +42,7 @@ class _CryptoScreenState extends State<CryptoScreen> {
           child: CustomCard(
             cardText: '1 $token = $price $currencySelection',
             cryptoToken: token,
+            cryptoName: cryptoList[token],
           ),
         ),
       );

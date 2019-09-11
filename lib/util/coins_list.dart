@@ -17,7 +17,3 @@ const Map<String, String> cryptoList = {
   'XRP': 'Ripple',
   'ZEC': 'ZCash',
 };
-
-
-
-class CoinList {}
