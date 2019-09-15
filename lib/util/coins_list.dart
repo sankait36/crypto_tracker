@@ -13,6 +13,7 @@ const Map<String, String> cryptoList = {
   'BTC': 'Bitcoin',
   'ETH': 'Ethereum',
   'LTC': 'Litecoin',
+  'BCH': 'Bitcoin Cash',
   'XMR': 'Monero',
   'XRP': 'Ripple',
   'ZEC': 'ZCash',

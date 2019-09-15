@@ -104,7 +104,7 @@ class _CryptoScreenState extends State<CryptoScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
+              padding: EdgeInsets.all(18.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
@@ -121,7 +121,7 @@ class _CryptoScreenState extends State<CryptoScreen> {
             ),
             Expanded(
               child: ListView(
-                padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
+                padding: EdgeInsets.fromLTRB(18.0, 0, 18.0, 0),
                 children: getCryptoCards(),
               ),
             )
