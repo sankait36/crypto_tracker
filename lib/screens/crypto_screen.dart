@@ -5,6 +5,7 @@ import 'package:crypto_tracker/util/coins_list.dart';
 import 'package:crypto_tracker/util/constants.dart';
 import 'package:flutter_cupertino_data_picker/flutter_cupertino_data_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class CryptoScreen extends StatefulWidget {
   @override
@@ -22,8 +23,8 @@ class _CryptoScreenState extends State<CryptoScreen> {
   }
 
   void getCryptoData() async {
-    var cryptoData =
-        await CryptoModel().getCryptoData(cryptoList.keys.toList(), currenciesList);
+    var cryptoData = await CryptoModel()
+        .getCryptoData(cryptoList.keys.toList(), currenciesList);
     setState(() {
       this.cryptoData = cryptoData;
     });
@@ -76,6 +77,16 @@ class _CryptoScreenState extends State<CryptoScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (this.cryptoData.isEmpty) {
+      return Scaffold(
+        body: Center(
+          child: SpinKitCubeGrid(
+            color: Colors.grey.shade700,
+            size: 50.0,
+          ),
+        ),
+      );
+    }
     return Scaffold(
       appBar: CustomAppBar(
         title: Text(
@@ -121,7 +132,7 @@ class _CryptoScreenState extends State<CryptoScreen> {
             ),
             Expanded(
               child: ListView(
-                padding: EdgeInsets.fromLTRB(18.0, 0, 18.0, 0),
+                padding: EdgeInsets.fromLTRB(18.0, 0, 18.0, 18.0),
                 children: getCryptoCards(),
               ),
             )
