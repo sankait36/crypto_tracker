@@ -91,19 +91,16 @@ class _CryptoScreenState extends State<CryptoScreen> {
       appBar: CustomAppBar(
         title: Text(
           'Crypto Tracker',
-          style: kAppBarTextStyle,
         ),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.refresh),
-            color: Colors.black,
             onPressed: () {
               getCryptoData();
             },
           ),
           IconButton(
             icon: Icon(Icons.more_vert),
-            color: Colors.black,
             onPressed: () {
               _showCupertinoDataPicker();
             },

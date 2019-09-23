@@ -8,6 +8,12 @@ const kAppBarTextStyle = TextStyle(
   fontSize: 25.0,
 );
 
+const kAppBarTextStyleDark = TextStyle(
+  color: Colors.white,
+  fontFamily: 'Nunito',
+  fontSize: 25.0,
+);
+
 const kCardMainTextStyle = TextStyle(
   color: Colors.black,
   fontFamily: 'Nunito',
