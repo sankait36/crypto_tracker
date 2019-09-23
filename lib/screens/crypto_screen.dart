@@ -23,10 +23,10 @@ class _CryptoScreenState extends State<CryptoScreen> {
   }
 
   void getCryptoData() async {
-    var cryptoData = await CryptoModel()
+    var newCryptoData = await CryptoModel()
         .getCryptoData(cryptoList.keys.toList(), currenciesList);
     setState(() {
-      this.cryptoData = cryptoData;
+      this.cryptoData = newCryptoData;
     });
   }
 
