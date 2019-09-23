@@ -22,7 +22,6 @@ class CustomCard extends StatelessWidget {
       child: tokenImage,
     );
     return Card(
-      color: Colors.white,
       elevation: 10.0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
