@@ -1,8 +1,10 @@
 import 'package:crypto_tracker/components/custom_app_bar.dart';
 import 'package:crypto_tracker/components/custom_card.dart';
+import 'package:crypto_tracker/components/custom_drawer.dart';
 import 'package:crypto_tracker/services/crypto_model.dart';
 import 'package:crypto_tracker/util/coins_list.dart';
 import 'package:crypto_tracker/util/constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_cupertino_data_picker/flutter_cupertino_data_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -14,6 +16,7 @@ class CryptoScreen extends StatefulWidget {
 
 class _CryptoScreenState extends State<CryptoScreen> {
   String currencySelection = 'USD';
+  String appBarTitle = 'Prices';
   var cryptoData = {};
 
   @override
@@ -88,9 +91,10 @@ class _CryptoScreenState extends State<CryptoScreen> {
       );
     }
     return Scaffold(
+      drawer: CustomDrawer(),
       appBar: CustomAppBar(
         title: Text(
-          'Crypto Tracker',
+          this.appBarTitle,
         ),
         actions: <Widget>[
           IconButton(
