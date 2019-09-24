@@ -8,8 +8,19 @@ const kAppBarTextStyle = TextStyle(
   fontSize: 25.0,
 );
 
+const kAppBarTextStyleDark = TextStyle(
+  color: Colors.white,
+  fontFamily: 'Nunito',
+  fontSize: 25.0,
+);
+
 const kCardMainTextStyle = TextStyle(
-  color: Colors.black,
+  fontFamily: 'Nunito',
+  fontWeight: FontWeight.bold,
+  fontSize: 18.0,
+);
+
+const kCardMainTextStyleDark = TextStyle(
   fontFamily: 'Nunito',
   fontWeight: FontWeight.bold,
   fontSize: 18.0,
@@ -22,7 +33,6 @@ const kCardSubTextStyle = TextStyle(
 );
 
 const kPopupMenuItemTextStyle = TextStyle(
-  color: Colors.black,
   fontFamily: 'Nunito',
   fontSize: 20.0,
 );
