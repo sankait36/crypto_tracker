@@ -7,10 +7,13 @@ class CustomDrawer extends StatelessWidget {
     return Drawer(
       child: ListView(
         children: <Widget>[
-          ListTile(
-            title: Text(
-              'CryptoTracker',
-              style: kDrawerHeaderTextStyle,
+          Padding(
+            padding: EdgeInsets.only(top: 32.0),
+            child: ListTile(
+              title: Text(
+                'CryptoTracker',
+                style: kDrawerHeaderTextStyle,
+              ),
             ),
           ),
           Divider(),

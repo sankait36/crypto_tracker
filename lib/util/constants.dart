@@ -44,5 +44,5 @@ const kDrawerTileTextStyle = TextStyle(
 
 const kDrawerHeaderTextStyle = TextStyle(
   fontFamily: 'Nunito',
-  fontSize: 36.0,
+  fontSize: 32.0,
 );
