@@ -9,10 +9,13 @@ class CustomDrawer extends StatelessWidget {
         children: <Widget>[
           Padding(
             padding: EdgeInsets.only(top: 32.0),
-            child: ListTile(
-              title: Text(
-                'CryptoTracker',
-                style: kDrawerHeaderTextStyle,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: ListTile(
+                title: Text(
+                  'CryptoTracker',
+                  style: kDrawerHeaderTextStyle,
+                ),
               ),
             ),
           ),

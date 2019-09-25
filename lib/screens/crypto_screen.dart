@@ -14,7 +14,7 @@ class CryptoScreen extends StatefulWidget {
   _CryptoScreenState createState() => _CryptoScreenState();
 }
 
-class _CryptoScreenState extends State<CryptoScreen> {
+class _CryptoScreenState extends State<CryptoScreen> with WidgetsBindingObserver {
   String currencySelection = 'USD';
   String appBarTitle = 'Prices';
   var cryptoData = {};
