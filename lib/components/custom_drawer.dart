@@ -2,6 +2,11 @@ import 'package:crypto_tracker/util/constants.dart';
 import 'package:flutter/material.dart';
 
 class CustomDrawer extends StatelessWidget {
+  final String currencySelection;
+  final Function onCurrencySelectionChange;
+
+  const CustomDrawer({this.currencySelection, this.onCurrencySelectionChange});
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -23,11 +28,16 @@ class CustomDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.attach_money),
             title: Text(
-              'Selected Currency',
+              'Currency',
+              style: kDrawerTileTextStyle,
+            ),
+            trailing: Text(
+              currencySelection,
               style: kDrawerTileTextStyle,
             ),
             onTap: () {
               Navigator.pop(context);
+              onCurrencySelectionChange();
             },
           ),
         ],
