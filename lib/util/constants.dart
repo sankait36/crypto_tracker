@@ -36,3 +36,13 @@ const kPopupMenuItemTextStyle = TextStyle(
   fontFamily: 'Nunito',
   fontSize: 20.0,
 );
+
+const kDrawerTileTextStyle = TextStyle(
+  fontFamily: 'Nunito',
+  fontSize: 18.0,
+);
+
+const kDrawerHeaderTextStyle = TextStyle(
+  fontFamily: 'Nunito',
+  fontSize: 32.0,
+);

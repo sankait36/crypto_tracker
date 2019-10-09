@@ -1,8 +1,9 @@
 import 'package:crypto_tracker/components/custom_app_bar.dart';
 import 'package:crypto_tracker/components/custom_card.dart';
+import 'package:crypto_tracker/components/custom_drawer.dart';
 import 'package:crypto_tracker/services/crypto_model.dart';
 import 'package:crypto_tracker/util/coins_list.dart';
-import 'package:crypto_tracker/util/constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_cupertino_data_picker/flutter_cupertino_data_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -12,8 +13,9 @@ class CryptoScreen extends StatefulWidget {
   _CryptoScreenState createState() => _CryptoScreenState();
 }
 
-class _CryptoScreenState extends State<CryptoScreen> {
+class _CryptoScreenState extends State<CryptoScreen> with WidgetsBindingObserver {
   String currencySelection = 'USD';
+  String appBarTitle = 'Prices';
   var cryptoData = {};
 
   @override
@@ -88,9 +90,15 @@ class _CryptoScreenState extends State<CryptoScreen> {
       );
     }
     return Scaffold(
+      drawer: CustomDrawer(
+        currencySelection: this.currencySelection,
+        onCurrencySelectionChange: () {
+          this._showCupertinoDataPicker();
+        },
+      ),
       appBar: CustomAppBar(
         title: Text(
-          'Crypto Tracker',
+          this.appBarTitle,
         ),
         actions: <Widget>[
           IconButton(
@@ -99,37 +107,15 @@ class _CryptoScreenState extends State<CryptoScreen> {
               getCryptoData();
             },
           ),
-          IconButton(
-            icon: Icon(Icons.more_vert),
-            onPressed: () {
-              _showCupertinoDataPicker();
-            },
-          ),
         ],
       ),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Padding(
-              padding: EdgeInsets.all(18.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Text(
-                    'Selected Currency:',
-                    style: kPopupMenuItemTextStyle,
-                  ),
-                  Text(
-                    currencySelection,
-                    style: kPopupMenuItemTextStyle,
-                  )
-                ],
-              ),
-            ),
             Expanded(
               child: ListView(
-                padding: EdgeInsets.fromLTRB(18.0, 0, 18.0, 18.0),
+                padding: EdgeInsets.all(18.0),
                 children: getCryptoCards(),
               ),
             )
