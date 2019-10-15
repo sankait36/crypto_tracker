@@ -13,18 +13,24 @@ class CryptoScreen extends StatefulWidget {
   _CryptoScreenState createState() => _CryptoScreenState();
 }
 
-class _CryptoScreenState extends State<CryptoScreen> with WidgetsBindingObserver {
+class _CryptoScreenState extends State<CryptoScreen>
+    with WidgetsBindingObserver {
   String currencySelection = 'USD';
   String appBarTitle = 'Prices';
   var cryptoData = {};
 
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+      new GlobalKey<RefreshIndicatorState>();
+
   @override
   initState() {
     super.initState();
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) => _refreshIndicatorKey.currentState.show());
     getCryptoData();
   }
 
-  void getCryptoData() async {
+  Future<void> getCryptoData() async {
     var newCryptoData = await CryptoModel()
         .getCryptoData(cryptoList.keys.toList(), currenciesList);
     setState(() {
@@ -100,26 +106,22 @@ class _CryptoScreenState extends State<CryptoScreen> with WidgetsBindingObserver
         title: Text(
           this.appBarTitle,
         ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.refresh),
-            onPressed: () {
-              getCryptoData();
-            },
-          ),
-        ],
       ),
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Expanded(
-              child: ListView(
-                padding: EdgeInsets.all(18.0),
-                children: getCryptoCards(),
-              ),
-            )
-          ],
+        child: RefreshIndicator(
+          key: _refreshIndicatorKey,
+          onRefresh: getCryptoData,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Expanded(
+                child: ListView(
+                  padding: EdgeInsets.all(18.0),
+                  children: getCryptoCards(),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
