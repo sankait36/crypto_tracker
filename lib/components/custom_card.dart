@@ -33,7 +33,10 @@ class CustomCard extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => TokenScreen(cryptoToken: cryptoToken)));
+                  builder: (context) => TokenScreen(
+                        cryptoToken: cryptoToken,
+                        cryptoName: cryptoName,
+                      )));
         },
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
