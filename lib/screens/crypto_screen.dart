@@ -51,9 +51,10 @@ class _CryptoScreenState extends State<CryptoScreen>
         Padding(
           padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
           child: CustomCard(
-            cardText: '1 $token = $price $currencySelection',
             cryptoToken: token,
             cryptoName: cryptoList[token],
+            cryptoPrice: price,
+            currencySelection: currencySelection
           ),
         ),
       );

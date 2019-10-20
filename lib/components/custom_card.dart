@@ -4,11 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomCard extends StatelessWidget {
-  final String cardText;
   final String cryptoToken;
   final String cryptoName;
+  final String cryptoPrice;
+  final String currencySelection;
 
-  const CustomCard({this.cardText, this.cryptoToken, this.cryptoName});
+  const CustomCard(
+      {this.cryptoToken,
+      this.cryptoName,
+      this.cryptoPrice,
+      this.currencySelection});
 
   @override
   Widget build(BuildContext context) {
@@ -41,27 +46,47 @@ class CustomCard extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(right: 15.0),
-                child: Hero(
-                  tag: '${cryptoToken}_LOGO',
-                  child: imageContainer,
+              Container(
+                child: Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(right: 15.0),
+                      child: Hero(
+                        tag: '${cryptoToken}_LOGO',
+                        child: imageContainer,
+                      ),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          this.cryptoName,
+                          style: kCardMainTextStyle,
+                        ),
+                        Text(
+                          this.cryptoToken,
+                          style: kCardSubTextStyle,
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
               Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
                   Text(
-                    cardText,
+                    this.cryptoPrice,
                     style: kCardMainTextStyle,
                   ),
                   Text(
-                    this.cryptoName,
+                    this.currencySelection,
                     style: kCardSubTextStyle,
                   ),
                 ],
-              )
+              ),
             ],
           ),
         ),
