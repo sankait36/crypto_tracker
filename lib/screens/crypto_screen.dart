@@ -3,6 +3,7 @@ import 'package:crypto_tracker/components/custom_card.dart';
 import 'package:crypto_tracker/components/custom_drawer.dart';
 import 'package:crypto_tracker/services/crypto_model.dart';
 import 'package:crypto_tracker/util/coins_list.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_cupertino_data_picker/flutter_cupertino_data_picker.dart';
 import 'package:flutter/material.dart';
@@ -21,14 +22,12 @@ class _CryptoScreenState extends State<CryptoScreen>
   String appBarTitle = 'Prices';
   var cryptoData = {};
 
-  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+  GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
       new GlobalKey<RefreshIndicatorState>();
 
   @override
   initState() {
     super.initState();
-    WidgetsBinding.instance
-        .addPostFrameCallback((_) => _refreshIndicatorKey.currentState.show());
     getCryptoData();
   }
 
@@ -51,11 +50,10 @@ class _CryptoScreenState extends State<CryptoScreen>
         Padding(
           padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
           child: CustomCard(
-            cryptoToken: token,
-            cryptoName: cryptoList[token],
-            cryptoPrice: price,
-            currencySelection: currencySelection
-          ),
+              cryptoToken: token,
+              cryptoName: cryptoList[token],
+              cryptoPrice: price,
+              currencySelection: currencySelection),
         ),
       );
     }
