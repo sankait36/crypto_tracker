@@ -21,14 +21,12 @@ class _CryptoScreenState extends State<CryptoScreen>
   String appBarTitle = 'Prices';
   var cryptoData = {};
 
-  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+  GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
       new GlobalKey<RefreshIndicatorState>();
 
   @override
   initState() {
     super.initState();
-    WidgetsBinding.instance
-        .addPostFrameCallback((_) => _refreshIndicatorKey.currentState.show());
     getCryptoData();
   }
 
@@ -51,10 +49,10 @@ class _CryptoScreenState extends State<CryptoScreen>
         Padding(
           padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
           child: CustomCard(
-            cardText: '1 $token = $price $currencySelection',
-            cryptoToken: token,
-            cryptoName: cryptoList[token],
-          ),
+              cryptoToken: token,
+              cryptoName: cryptoList[token],
+              cryptoPrice: price,
+              currencySelection: currencySelection),
         ),
       );
     }

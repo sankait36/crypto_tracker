@@ -1,4 +1,5 @@
 import 'package:crypto_tracker/services/networking.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 
 const bitcoinAverageAPIBase =
     'https://apiv2.bitcoinaverage.com/indices/global/ticker/short';
@@ -8,6 +9,12 @@ const bitcoinAverageAPIBase =
 class CryptoModel {
   Future<Object> getCryptoData(
       List<String> cryptoList, List<String> currencyList) async {
+    final RemoteConfig remoteConfig = await RemoteConfig.instance;
+    await remoteConfig.fetch(expiration: const Duration(hours: 5));
+    await remoteConfig.activateFetched();
+
+    print('welcome message: ' + remoteConfig.getString('welcome'));
+
     String cryptos = cryptoList.join(',');
     String fiats = currencyList.join(',');
     Networking networkHelper =
