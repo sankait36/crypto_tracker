@@ -1,3 +1,4 @@
+import 'package:crypto_tracker/screens/token_screen.dart';
 import 'package:crypto_tracker/util/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -26,28 +27,43 @@ class CustomCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
-      child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
-        child: Row(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(right: 15.0),
-              child: imageContainer,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  cardText,
-                  style: kCardMainTextStyle,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(10.0),
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => TokenScreen(
+                        cryptoToken: cryptoToken,
+                        cryptoName: cryptoName,
+                      )));
+        },
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
+          child: Row(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(right: 15.0),
+                child: Hero(
+                  tag: '${cryptoToken}_LOGO',
+                  child: imageContainer,
                 ),
-                Text(
-                  this.cryptoName,
-                  style: kCardSubTextStyle,
-                ),
-              ],
-            )
-          ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    cardText,
+                    style: kCardMainTextStyle,
+                  ),
+                  Text(
+                    this.cryptoName,
+                    style: kCardSubTextStyle,
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -9,12 +9,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class CryptoScreen extends StatefulWidget {
+  static const String id = 'crypto_screen';
+
   @override
   _CryptoScreenState createState() => _CryptoScreenState();
 }
 
 class _CryptoScreenState extends State<CryptoScreen>
-    with WidgetsBindingObserver {
+    with WidgetsBindingObserver, SingleTickerProviderStateMixin {
   String currencySelection = 'USD';
   String appBarTitle = 'Prices';
   var cryptoData = {};
