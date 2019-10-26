@@ -3,7 +3,6 @@ import 'package:crypto_tracker/components/custom_card.dart';
 import 'package:crypto_tracker/components/custom_drawer.dart';
 import 'package:crypto_tracker/services/crypto_model.dart';
 import 'package:crypto_tracker/util/coins_list.dart';
-import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_cupertino_data_picker/flutter_cupertino_data_picker.dart';
 import 'package:flutter/material.dart';
