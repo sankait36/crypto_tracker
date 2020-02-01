@@ -13,12 +13,12 @@ class CryptoModel {
     await remoteConfig.fetch(expiration: const Duration(hours: 5));
     await remoteConfig.activateFetched();
 
-    print('welcome message: ' + remoteConfig.getString('welcome'));
+    var key = remoteConfig.getString('bitcoinaverage');
 
     String cryptos = cryptoList.join(',');
     String fiats = currencyList.join(',');
     Networking networkHelper =
-        Networking('$bitcoinAverageAPIBase?crypto=$cryptos&fiat=$fiats');
+        Networking('$bitcoinAverageAPIBase?crypto=$cryptos&fiat=$fiats', key);
     var cryptoData = await networkHelper.getData();
     var priceData = getPricesForCryptoToken(cryptoList, cryptoData);
     return priceData;
